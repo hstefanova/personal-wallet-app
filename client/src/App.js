@@ -2,13 +2,18 @@ import React, { useState } from "react";
 
 import logo from "./logo.svg";
 import RecordForm from "./components/RecordForm";
+import RecordList from "./components/RecordList";
 
 const App = () => {
+  // why useState([]) returns type object ?
   const [records, setRecords] = useState([]);
 
   const addRecord = (record) => {
-    setRecords([record, ...records]);
+    // https://stackoverflow.com/questions/57750301/usestate-array-of-objects
+    setRecords([...records, record]);
   };
+
+  console.log("records type: ", typeof records);
 
   return (
     <div className="App">
@@ -19,13 +24,8 @@ const App = () => {
       <RecordForm addRecord={addRecord} />
 
       <h5>Records:</h5>
-      {records.map((record) => (
-        <>
-          <p>Note: {record.note}</p>
-          <p>Amount: {record.amount}</p>
-          <p>Category: {record.category}</p>
-        </>
-      ))}
+
+      <RecordList records={records} />
     </div>
   );
 };
