@@ -1,50 +1,111 @@
 import React, { useState } from "react";
 import { v4 as uuid, v4 } from "uuid";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import classes from "./RecordForm.module.css";
 
 const RecordForm = ({ addRecord }) => {
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [recordDate, setRecordDate] = useState(new Date());
   const [record, setRecord] = useState({
     id: "",
     note: "",
     amount: "",
     category: "",
+    date: "",
   });
+
+  const handleSelectedCategory = (e) => {
+    e.preventDefault();
+
+    let selectedCategory = e.target.childNodes[0].textContent.trim();
+    setRecord({ ...record, category: selectedCategory });
+    setIsMenuVisible(!isMenuVisible);
+  };
 
   const handleChange = (event) => {
     setRecord({ ...record, [event.target.name]: event.target.value });
   };
 
-  const timeValues = () => {};
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    addRecord({ ...record, id: uuid() });
-    setRecord({ id: "", amount: "", note: "", category: "" });
+
+    addRecord({ ...record, id: uuid(), date: recordDate });
+    setRecord({ id: "", amount: "", note: "", category: "", date: "" });
   };
+
+  console.log(recordDate);
+  console.log("value of isMenuVisible: ", isMenuVisible);
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="note"
-        placeholder="Note"
-        value={record.note}
-        onChange={handleChange}
-      />
+      <div className={classes.field}>
+        <input
+          type="text"
+          name="note"
+          placeholder="Note"
+          value={record.note}
+          onChange={handleChange}
+        />
+      </div>
+      <div className={classes.field}>
+        <input
+          type="text"
+          name="amount"
+          placeholder="Amount"
+          value={record.amount}
+          onChange={handleChange}
+        />
+      </div>
 
-      <input
-        type="text"
-        name="amount"
-        placeholder="Amount"
-        value={record.amount}
-        onChange={handleChange}
-      />
+      <div className={`${classes.field} ${classes.category}`}>
+        <input
+          type="text"
+          name="category"
+          className={classes.categoryField}
+          placeholder="Category"
+          value={record.category}
+          onChange={handleChange}
+          onClick={(e) => setIsMenuVisible(!isMenuVisible)}
+        />
+        {isMenuVisible ? (
+          <div className={classes.categoryMenu}>
+            <ul onClick={handleSelectedCategory}>
+              <li>
+                Food
+                <div className={classes.categoryMenuDropdown}>
+                  <ul>
+                    <li>pasta</li>
 
-      <input
-        type="text"
-        name="category"
-        placeholder="Category"
-        value={record.category}
-        onChange={handleChange}
+                    <li>chicken</li>
+
+                    <li>pizza</li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                Shopping
+                <div className={classes.categoryMenuDropdown}>
+                  <ul>
+                    <li>Accessories</li>
+
+                    <li>Home</li>
+
+                    <li>Health</li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        ) : null}
+      </div>
+
+      <DatePicker
+        selected={recordDate}
+        onChange={(date) => setRecordDate(date)}
+        dateFormat="dd MMM yyyy"
+        maxDate={new Date()}
       />
 
       <button type="Submit">Save</button>
