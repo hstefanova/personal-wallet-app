@@ -1,0 +1,25 @@
+.categoryMenuDropdown {
+  background: lightcoral;
+}
+
+.categoryMenu {
+  background: lightgray;
+}
+
+.categoryMenu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: lightblue;
+  width: 100%;
+}
+
+.categoryMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categoryMenuDropdown {
+  background: lightgray;
+}

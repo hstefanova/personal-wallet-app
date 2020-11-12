@@ -3,6 +3,7 @@ import { v4 as uuid, v4 } from "uuid";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import classes from "./RecordForm.module.css";
+import CategoryMenu from "../CategoryMenu";
 
 const RecordForm = ({ addRecord }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -62,42 +63,13 @@ const RecordForm = ({ addRecord }) => {
         <input
           type="text"
           name="category"
-          className={classes.categoryField}
           placeholder="Category"
           value={record.category}
           onChange={handleChange}
           onClick={(e) => setIsMenuVisible(!isMenuVisible)}
         />
         {isMenuVisible ? (
-          <div className={classes.categoryMenu}>
-            <ul onClick={handleSelectedCategory}>
-              <li>
-                Food
-                <div className={classes.categoryMenuDropdown}>
-                  <ul>
-                    <li>pasta</li>
-
-                    <li>chicken</li>
-
-                    <li>pizza</li>
-                  </ul>
-                </div>
-              </li>
-
-              <li>
-                Shopping
-                <div className={classes.categoryMenuDropdown}>
-                  <ul>
-                    <li>Accessories</li>
-
-                    <li>Home</li>
-
-                    <li>Health</li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <CategoryMenu handleSelectedCategory={handleSelectedCategory} />
         ) : null}
       </div>
 
