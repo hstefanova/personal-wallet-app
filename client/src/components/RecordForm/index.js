@@ -66,7 +66,9 @@ const RecordForm = ({ addRecord }) => {
           placeholder="Category"
           value={record.category}
           onChange={handleChange}
+          readonly="readonly"
           onClick={(e) => setIsMenuVisible(!isMenuVisible)}
+          onKeyUp={(e) => setIsMenuVisible(!isMenuVisible)}
         />
         {isMenuVisible ? (
           <CategoryMenu handleSelectedCategory={handleSelectedCategory} />

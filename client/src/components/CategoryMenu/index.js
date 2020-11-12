@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import classes from "./CategoryMenu.module.css";
 import { categories } from "../../utils";
-
 const CategoryMenu = ({ handleSelectedCategory }) => {
   return (
     <div className={classes.categoryMenu}>
       <ul onClick={handleSelectedCategory}>
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <>
-            <li>{category.type}</li>
+            <li key={index}>{category.type}</li>
 
             <div className={classes.categoryMenuDropdown}>
               <ul>
