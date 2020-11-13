@@ -1,9 +1,11 @@
 export const categories = [
   {
+    id: "food",
     type: "Food and drinks",
     options: ["Restourant, fast food", "Groceries", "Bar, cafe"],
   },
   {
+    id: "shopping",
     type: "Shopping",
     options: [
       "Clothing and footwear",
@@ -14,6 +16,7 @@ export const categories = [
     ],
   },
   {
+    id: "housing",
     type: "Housing",
     options: [
       "Energy, utilities",
@@ -24,6 +27,7 @@ export const categories = [
     ],
   },
   {
+    id: "transport",
     type: "Transport",
     options: ["Business travel", "Long distances", "Public transport", "Taxi"],
   },

@@ -1,17 +1,25 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import "./App.css";
 import logo from "./logo.svg";
 import RecordForm from "./components/RecordForm";
 import RecordList from "./components/RecordList";
 
 const App = () => {
-  // why useState([]) returns type object ?
   const [records, setRecords] = useState([]);
 
   const addRecord = (record) => {
-    // https://stackoverflow.com/questions/57750301/usestate-array-of-objects
     setRecords([...records, record]);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("records")) {
+      setRecords(JSON.parse(localStorage.getItem("records")));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("records", JSON.stringify(records));
+  }, [records]);
 
   console.log("records type: ", typeof records);
 

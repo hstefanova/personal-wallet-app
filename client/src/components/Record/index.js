@@ -1,13 +1,20 @@
 import React from "react";
+import classes from "./Record.module.css";
 
 const Record = ({ record }) => {
-  console.log("record: ", record);
   return (
-    <div>
-      <p>{record.note}</p>
-      <p>{record.category}</p>
-      <p>{record.amount}</p>
-      <p>{record.date.toDateString()}</p>
+    <div className={classes.record}>
+      <div className={classes.checkbox}>
+        <input type="checkbox" />
+      </div>
+
+      <div className={classes.recordCategory}>{record.category}</div>
+
+      <div className={classes.recordNote}>{record.note}</div>
+
+      <div className={classes.recordAmount}>{record.amount}</div>
+
+      {/* <div>Date: {recordDate}</div> */}
     </div>
   );
 };

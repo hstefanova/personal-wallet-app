@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import classes from "./CategoryMenu.module.css";
 import { categories } from "../../utils";
+
+// You need to update the key values to be unique for each of the <li> elements</li>
 const CategoryMenu = ({ handleSelectedCategory }) => {
   return (
     <div className={classes.categoryMenu}>
       <ul onClick={handleSelectedCategory}>
-        {categories.map((category, index) => (
+        {categories.map((category) => (
           <>
-            <li key={index}>{category.type}</li>
+            <li key={category.id}>{category.type}</li>
 
             <div className={classes.categoryMenuDropdown}>
               <ul>

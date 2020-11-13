@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Record from "../Record";
 
 const RecordList = ({ records }) => {

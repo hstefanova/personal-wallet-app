@@ -41,15 +41,17 @@ const RecordForm = ({ addRecord }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className={classes.field}>
+        <label htmlFor="note">Note</label>
         <input
           type="text"
           name="note"
-          placeholder="Note"
+          placeholder="Leave a note"
           value={record.note}
           onChange={handleChange}
         />
       </div>
       <div className={classes.field}>
+        <label htmlFor="amount">Amount</label>
         <input
           type="text"
           name="amount"
@@ -60,13 +62,14 @@ const RecordForm = ({ addRecord }) => {
       </div>
 
       <div className={`${classes.field} ${classes.category}`}>
+        <label htmlFor="category">Category</label>
         <input
           type="text"
           name="category"
           placeholder="Category"
           value={record.category}
           onChange={handleChange}
-          readonly="readonly"
+          readOnly="readonly"
           onClick={(e) => setIsMenuVisible(!isMenuVisible)}
           onKeyUp={(e) => setIsMenuVisible(!isMenuVisible)}
         />
