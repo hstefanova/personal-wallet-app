@@ -4,6 +4,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import classes from "./RecordForm.module.css";
 import CategoryMenu from "../CategoryMenu";
+import { useFormik } from "formik";
+import {
+  onSubmit,
+  initialValues,
+  validate,
+  validationSchema,
+} from "./validation";
 
 const RecordForm = ({ addRecord }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -14,6 +21,12 @@ const RecordForm = ({ addRecord }) => {
     amount: "",
     category: "",
     date: "",
+  });
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
   });
 
   const handleSelectedCategory = (e) => {
@@ -35,19 +48,17 @@ const RecordForm = ({ addRecord }) => {
     setRecord({ id: "", amount: "", note: "", category: "", date: "" });
   };
 
-  console.log(recordDate);
-  console.log("value of isMenuVisible: ", isMenuVisible);
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
       <div className={classes.field}>
         <label htmlFor="note">Note</label>
         <input
           type="text"
           name="note"
           placeholder="Leave a note"
-          value={record.note}
-          onChange={handleChange}
+          value={formik.values.note}
+          // onChange={handleChange}
+          onChange={formik.handleChange}
         />
       </div>
       <div className={classes.field}>
@@ -56,9 +67,15 @@ const RecordForm = ({ addRecord }) => {
           type="text"
           name="amount"
           placeholder="Amount"
-          value={record.amount}
-          onChange={handleChange}
+          value={formik.values.amount}
+          // onChange={handleChange}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
         />
+
+        {formik.touched.amount && formik.errors.amount ? (
+          <div className={classes.error}>{formik.errors.amount}</div>
+        ) : null}
       </div>
 
       <div className={`${classes.field} ${classes.category}`}>
@@ -67,9 +84,10 @@ const RecordForm = ({ addRecord }) => {
           type="text"
           name="category"
           placeholder="Category"
-          value={record.category}
-          onChange={handleChange}
-          readOnly="readonly"
+          value={formik.values.category}
+          // onChange={handleChange}
+          // onChange={formik.handleChange}
+          // readOnly="readonly"
           onClick={(e) => setIsMenuVisible(!isMenuVisible)}
           onKeyUp={(e) => setIsMenuVisible(!isMenuVisible)}
         />

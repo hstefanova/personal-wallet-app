@@ -1,8 +1,23 @@
 .field {
+  position: relative;
   display: inline-block;
 }
 
 .category {
   position: relative;
   display: inline-block;
+}
+
+.error {
+  color: red;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.field label {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 0;
 }
