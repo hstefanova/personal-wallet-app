@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import Record from "../Record";
+import Record from "./Record";
+import { records } from "../../utils";
 
-const RecordList = ({ records }) => {
+const RecordList = () => {
   return (
     <ul>
       {records.map((record) => (
         <li key={record.id}>
-          <Record key={record.id} record={record} />
+          <Record record={record} />
         </li>
       ))}
     </ul>

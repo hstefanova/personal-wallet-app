@@ -14,7 +14,7 @@ const Record = ({ record }) => {
 
       <div className={classes.recordAmount}>{record.amount}</div>
 
-      {/* <div>Date: {recordDate}</div> */}
+      <div> {record.date}</div>
     </div>
   );
 };

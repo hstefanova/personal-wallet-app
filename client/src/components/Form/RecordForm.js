@@ -3,7 +3,11 @@ import { v4 as uuid, v4 } from "uuid";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import classes from "./RecordForm.module.css";
-import CategoryMenu from "../CategoryMenu";
+import SelectField from "../Form/SelectField";
+import InputField from "../Form/InputField";
+import { categories, flattenArray } from "../../utils";
+
+console.log(flattenArray(categories));
 
 const RecordForm = ({ addRecord }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -24,8 +28,8 @@ const RecordForm = ({ addRecord }) => {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  const handleChange = (event) => {
-    setRecord({ ...record, [event.target.name]: event.target.value });
+  const handleChange = (name, value) => {
+    setRecord({ ...record, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -35,33 +39,29 @@ const RecordForm = ({ addRecord }) => {
     setRecord({ id: "", amount: "", note: "", category: "", date: "" });
   };
 
-  console.log(recordDate);
-  console.log("value of isMenuVisible: ", isMenuVisible);
-
   return (
     <form onSubmit={handleSubmit}>
-      <div className={classes.field}>
-        <label htmlFor="note">Note</label>
-        <input
-          type="text"
-          name="note"
-          placeholder="Leave a note"
-          value={record.note}
-          onChange={handleChange}
-        />
-      </div>
-      <div className={classes.field}>
-        <label htmlFor="amount">Amount</label>
-        <input
-          type="text"
-          name="amount"
-          placeholder="Amount"
-          value={record.amount}
-          onChange={handleChange}
-        />
-      </div>
+      <InputField
+        name="note"
+        placeholder="Leave a note"
+        value={record.note}
+        onChange={(value) => handleChange("note", value)}
+      />
 
-      <div className={`${classes.field} ${classes.category}`}>
+      <InputField
+        name="amount"
+        placeholder="Amount"
+        value={record.amount}
+        onChange={(value) => handleChange("amount", value)}
+      />
+
+      <SelectField
+        options={categories}
+        value={record.category}
+        onChange={(value) => handleChange("category", value)}
+      />
+
+      {/* <div className={`${classes.field} ${classes.category}`}>
         <label htmlFor="category">Category</label>
         <input
           type="text"
@@ -74,9 +74,9 @@ const RecordForm = ({ addRecord }) => {
           onKeyUp={(e) => setIsMenuVisible(!isMenuVisible)}
         />
         {isMenuVisible ? (
-          <CategoryMenu handleSelectedCategory={handleSelectedCategory} />
+          <SelectField handleSelectedCategory={handleSelectedCategory} />
         ) : null}
-      </div>
+      </div> */}
 
       <DatePicker
         selected={recordDate}
