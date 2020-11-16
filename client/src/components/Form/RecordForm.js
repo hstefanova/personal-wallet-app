@@ -3,10 +3,10 @@ import { v4 as uuid, v4 } from "uuid";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import classes from "./RecordForm.module.css";
-import SelectField from "../Form/SelectField";
+import SelectField from "./Select/SelectField";
 import InputField from "../Form/InputField";
 import { categories } from "../../utils";
-import { flattenArray } from "../Form/SelectField";
+import { flattenArray } from "./Select/SelectField";
 
 // console.log(flattenArray(categories));
 // const OPTIONS = flattenArray(categories);

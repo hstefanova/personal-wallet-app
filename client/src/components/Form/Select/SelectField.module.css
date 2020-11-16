@@ -1,0 +1,32 @@
+.select {
+  display: inline-block;
+  position: relative;
+}
+
+.select .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: lightgreen;
+  width: 100%;
+}
+
+.dropdown li {
+  padding: 10px;
+}
+
+.dropdown li + li {
+  border-top: 1px solid #333;
+}
+.dropdown .dropdownItem {
+  background: lightseagreen;
+  position: relative;
+}
+
+.dropdownItemOptions {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: lightblue;
+  width: 100%;
+}
