@@ -7,12 +7,6 @@ export const categories = [
       {
         id: "restorant",
         type: "restorant",
-        options: [
-          {
-            id: "happy",
-            type: "Happy",
-          },
-        ],
       },
 
       {
@@ -36,6 +30,29 @@ export const categories = [
       },
     ],
   },
+  {
+    id: "shopping",
+    type: "Shopping",
+    options: [
+      {
+        id: "clothes",
+        type: "Clothes",
+      },
+      {
+        id: "footwear",
+        type: "Footwear",
+      },
+      {
+        id: "drugstore",
+        type: "drugstore",
+      },
+    ],
+  },
+  {
+    id: "housing",
+    type: "housing",
+  },
+
   // {
   //   id: "shopping",
   //   type: "Shopping",
@@ -74,24 +91,3 @@ export const records = [
     date: "14 nov 2020",
   },
 ];
-
-export const flattenArray = (arr) => {
-  return arr.reduce((acc, curr) => {
-    if (curr.options) {
-      acc.push(
-        {
-          value: curr.id,
-          label: curr.type,
-        },
-        ...flattenArray(curr.options)
-      );
-    } else {
-      acc.push({
-        value: curr.id,
-        label: curr.type,
-      });
-    }
-
-    return acc;
-  }, []);
-};

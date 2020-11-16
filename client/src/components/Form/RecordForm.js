@@ -5,13 +5,19 @@ import "react-datepicker/dist/react-datepicker.css";
 import classes from "./RecordForm.module.css";
 import SelectField from "../Form/SelectField";
 import InputField from "../Form/InputField";
-import { categories, flattenArray } from "../../utils";
+import { categories } from "../../utils";
+import { flattenArray } from "../Form/SelectField";
 
-console.log(flattenArray(categories));
+// console.log(flattenArray(categories));
+// const OPTIONS = flattenArray(categories);
+const OPTIONS = categories;
+
+console.log("OPTIONS: ", OPTIONS);
 
 const RecordForm = ({ addRecord }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [recordDate, setRecordDate] = useState(new Date());
+
   const [record, setRecord] = useState({
     id: "",
     note: "",
@@ -40,28 +46,29 @@ const RecordForm = ({ addRecord }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <InputField
-        name="note"
-        placeholder="Leave a note"
-        value={record.note}
-        onChange={(value) => handleChange("note", value)}
-      />
+    <form className={classes.recordForm} onSubmit={handleSubmit}>
+      <div className={classes.recordFormInner}>
+        <InputField
+          name="note"
+          placeholder="Leave a note"
+          value={record.note}
+          onChange={(value) => handleChange("note", value)}
+        />
 
-      <InputField
-        name="amount"
-        placeholder="Amount"
-        value={record.amount}
-        onChange={(value) => handleChange("amount", value)}
-      />
+        <InputField
+          name="amount"
+          placeholder="Amount"
+          value={record.amount}
+          onChange={(value) => handleChange("amount", value)}
+        />
 
-      <SelectField
-        options={categories}
-        value={record.category}
-        onChange={(value) => handleChange("category", value)}
-      />
+        <SelectField
+          options={OPTIONS}
+          value={record.category}
+          onChange={(value) => handleChange("category", value)}
+        />
 
-      {/* <div className={`${classes.field} ${classes.category}`}>
+        {/* <div className={`${classes.field} ${classes.category}`}>
         <label htmlFor="category">Category</label>
         <input
           type="text"
@@ -78,14 +85,15 @@ const RecordForm = ({ addRecord }) => {
         ) : null}
       </div> */}
 
-      <DatePicker
-        selected={recordDate}
-        onChange={(date) => setRecordDate(date)}
-        dateFormat="dd MMM yyyy"
-        maxDate={new Date()}
-      />
+        <DatePicker
+          selected={recordDate}
+          onChange={(date) => setRecordDate(date)}
+          dateFormat="dd MMM yyyy"
+          maxDate={new Date()}
+        />
 
-      <button type="Submit">Save</button>
+        <button type="Submit">Save</button>
+      </div>
     </form>
   );
 };

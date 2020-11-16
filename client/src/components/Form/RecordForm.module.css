@@ -1,8 +1,8 @@
-.field {
+/* .field {
   display: inline-block;
 }
 
-.category {
+.field__category {
   position: relative;
   display: inline-block;
 }
@@ -29,6 +29,59 @@
   margin: 0;
 }
 
-.categoryMenuDropdown {
-  background: lightgray;
+/* .dropdown {
+  display: none;
+} */
+
+/* .field .field__dropdown {
+  background: green;
+}
+
+.open {
+  display: block;
+  background: red;
+} */
+
+.recordFormInner {
+  display: flex;
+  align-items: flex-start;
+}
+
+.select {
+  display: inline-block;
+  position: relative;
+}
+
+.select .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: lightgreen;
+  width: 100%;
+}
+
+.dropdown li {
+  padding: 10px;
+}
+
+.dropdown li + li {
+  border-top: 1px solid #333;
+}
+.dropdown .dropdownItem {
+  background: lightseagreen;
+  position: relative;
+}
+
+.dropdown .dropdownItemOptions {
+  background: lightslategray;
+  /* position: absolute;
+  left: 100%;
+  top: 0;
+  width: 100%; */
+  /* display: none; */
+}
+
+.dropdown .dropdownItemOptions .active {
+  /* display: block; */
+  background: yellow;
 }

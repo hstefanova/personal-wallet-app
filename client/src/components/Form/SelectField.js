@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import classes from "./RecordForm.module.css";
 // import { categories } from "../../utils";
 
-// You need to update the key values to be unique for each of the <li> elements</li>
-
 const SelectField = ({ id, label, onChange, options = [], ...props }) => {
+  // show the dropdown of the category field
   const [isOpen, setIsOpen] = useState(false);
+  const [isActive, setIsActive] = useState("");
+  const [display, setDisplay] = useState("none");
+
+  const innerDropdownHeight = useRef(null);
+
+  const toggleDropdownOptions = () => {
+    setIsActive(isActive === "" ? "active" : "");
+    setDisplay(
+      isActive === "active"
+        ? (innerDropdownHeight.current.display = "none")
+        : (innerDropdownHeight.current.display = "block")
+    );
+
+    console.log(innerDropdownHeight);
+  };
+
+  const active = isActive ? classes.active : "";
 
   return (
-    <div className={`${classes.field} ${classes.category}`}>
+    <div className={`${classes.field} ${classes.select}`}>
       {label && <label htmlFor={id}>{label}</label>}
 
       <input
@@ -22,16 +38,31 @@ const SelectField = ({ id, label, onChange, options = [], ...props }) => {
         <div className={classes.dropdown}>
           <ul>
             {options.map((option) => (
-              <li key={option.id} onClick={() => onChange(option.id)}>
+              <li
+                key={option.id}
+                className={`${classes.dropdownItem}`}
+                onClick={toggleDropdownOptions}
+              >
                 {option.type}
 
-                <div className={classes.optionMenuDropdown}>
-                  <ul>
-                    {option.options.map((option, index) => (
-                      <li key={index}>{option}</li>
-                    ))}
-                  </ul>
-                </div>
+                {option.options && (
+                  <div
+                    ref={innerDropdownHeight}
+                    style={{ display: `${display}` }}
+                    className={`${classes.dropdownItemOptions} ${active}`}
+                  >
+                    <ul>
+                      {option.options.map((sub_option, index) => (
+                        <li
+                          key={sub_option.id}
+                          onClick={() => onChange(sub_option.id)}
+                        >
+                          - {sub_option.type}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
@@ -41,26 +72,31 @@ const SelectField = ({ id, label, onChange, options = [], ...props }) => {
   );
 };
 
-// const SelectField = ({ handleSelectedCategory }) => {
-//   return (
-//     <div className={classes.SelectField}>
-//       <ul onClick={handleSelectedCategory}>
-//         {categories.map((category) => (
-//           <li key={category.id}>
-//             {category.type}
-
-//             <div className={classes.categoryMenuDropdown}>
-//               <ul>
-//                 {category.options.map((option, index) => (
-//                   <li key={index}>{option}</li>
-//                 ))}
-//               </ul>
-//             </div>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
-
 export default SelectField;
+
+// export const flattenArray = (arr) => {
+//   return arr.reduce((acc, curr) => {
+//     if (curr.options) {
+//       acc.push({
+//         id: curr.id,
+//         label: curr.type,
+//         hasChildren: true,
+//         options: [
+//           {
+//             // first choice same as parent
+//             id: curr.id,
+//             label: curr.type,
+//           },
+//           ...flattenArray(curr.options),
+//         ],
+//       });
+//     } else {
+//       acc.push({
+//         id: curr.id,
+//         label: curr.type,
+//       });
+//     }
+
+//     return acc;
+//   }, []);
+// };
