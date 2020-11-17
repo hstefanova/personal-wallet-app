@@ -19,7 +19,7 @@ const SelectField = ({ id, label, onChange, options = [], ...props }) => {
         onKeyUp={(e) => setIsOpen(!isOpen)}
       />
       {isOpen ? (
-        <SelectFieldOptions options={options} />
+        <SelectFieldOptions onChange={onChange} options={options} />
       ) : // <div className={classes.dropdown}>
       //   <ul>
       //     {options.map((option) => (
