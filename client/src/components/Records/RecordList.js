@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Record from "./Record";
 import { records } from "../../utils";
 
-const RecordList = () => {
+const RecordList = ({ records }) => {
   return (
     <ul>
       {records.map((record) => (

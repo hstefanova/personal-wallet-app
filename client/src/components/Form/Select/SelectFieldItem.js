@@ -1,24 +1,16 @@
 import React, { useState } from "react";
 import classes from "./SelectField.module.css";
 
-const SelectFieldItem = ({ option, onChange }) => {
-  const [isActive, setIsActive] = useState(false);
-  const active = isActive ? classes.active : "";
-
-  const handleSelectValue = (e) => {
-    setIsActive(!isActive);
-    onChange(e.target.childNodes[0].textContent);
-  };
-
+const SelectFieldItem = ({ option, handleClick }) => {
   return (
-    <li className={classes.dropdownItem} onClick={handleSelectValue}>
+    <li className={classes.dropdownItem} onClick={handleClick}>
       {option.type}
 
-      {option.options && isActive && (
+      {option.options && (
         <div className={`${classes.dropdownItemOptions}`}>
           <ul>
             {option.options.map((subOption) => (
-              <li key={subOption.id} onClick={handleSelectValue}>
+              <li key={subOption.id} onClick={handleClick}>
                 {subOption.type}
               </li>
             ))}

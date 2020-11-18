@@ -1,11 +1,16 @@
 import React, { useState, useRef } from "react";
 import classes from "./SelectField.module.css";
 import SelectFieldOptions from "./SelectFieldOptions";
-// import { categories } from "../../utils";
 
 const SelectField = ({ id, label, onChange, options = [], ...props }) => {
-  // show the dropdown of the category field
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = (e) => {
+    onChange(e.target.childNodes[0].nodeValue);
+    setIsOpen(!isOpen);
+
+    console.log("event: ", e);
+  };
 
   return (
     <div className={`${classes.field} ${classes.select}`}>
@@ -19,40 +24,8 @@ const SelectField = ({ id, label, onChange, options = [], ...props }) => {
         onKeyUp={(e) => setIsOpen(!isOpen)}
       />
       {isOpen ? (
-        <SelectFieldOptions onChange={onChange} options={options} />
-      ) : // <div className={classes.dropdown}>
-      //   <ul>
-      //     {options.map((option) => (
-      //       <li
-      //         key={option.id}
-      //         className={`${classes.dropdownItem}`}
-      //         onClick={toggleDropdownOptions}
-      //       >
-      //         {option.type}
-
-      //         {option.options && (
-      //           <div
-      //             ref={innerDropdownHeight}
-      //             style={{ display: `${display}` }}
-      //             className={`${classes.dropdownItemOptions} ${active}`}
-      //           >
-      //             <ul>
-      //               {option.options.map((sub_option, index) => (
-      //                 <li
-      //                   key={sub_option.id}
-      //                   onClick={() => onChange(sub_option.id)}
-      //                 >
-      //                   - {sub_option.type}
-      //                 </li>
-      //               ))}
-      //             </ul>
-      //           </div>
-      //         )}
-      //       </li>
-      //     ))}
-      //   </ul>
-      // </div>
-      null}
+        <SelectFieldOptions handleClick={handleClick} options={options} />
+      ) : null}
     </div>
   );
 };

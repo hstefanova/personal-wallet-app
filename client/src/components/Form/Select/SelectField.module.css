@@ -18,9 +18,14 @@
 .dropdown li + li {
   border-top: 1px solid #333;
 }
-.dropdown .dropdownItem {
+
+.dropdownItem {
   background: lightseagreen;
   position: relative;
+}
+
+.dropdownItem:hover .dropdownItemOptions {
+  display: block;
 }
 
 .dropdownItemOptions {
@@ -29,4 +34,5 @@
   top: 0;
   background: lightblue;
   width: 100%;
+  display: none;
 }

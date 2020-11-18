@@ -8,11 +8,7 @@ import InputField from "../Form/InputField";
 import { categories } from "../../utils";
 import { flattenArray } from "./Select/SelectField";
 
-// console.log(flattenArray(categories));
-// const OPTIONS = flattenArray(categories);
 const OPTIONS = categories;
-
-console.log("OPTIONS: ", OPTIONS);
 
 const RecordForm = ({ addRecord }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -26,14 +22,6 @@ const RecordForm = ({ addRecord }) => {
     date: "",
   });
 
-  const handleSelectedCategory = (e) => {
-    e.preventDefault();
-
-    let selectedCategory = e.target.childNodes[0].textContent.trim();
-    setRecord({ ...record, category: selectedCategory });
-    setIsMenuVisible(!isMenuVisible);
-  };
-
   const handleChange = (name, value) => {
     setRecord({ ...record, [name]: value });
   };
@@ -43,6 +31,7 @@ const RecordForm = ({ addRecord }) => {
 
     addRecord({ ...record, id: uuid(), date: recordDate });
     setRecord({ id: "", amount: "", note: "", category: "", date: "" });
+    setRecordDate(new Date());
   };
 
   return (
@@ -67,23 +56,6 @@ const RecordForm = ({ addRecord }) => {
           value={record.category}
           onChange={(value) => handleChange("category", value)}
         />
-
-        {/* <div className={`${classes.field} ${classes.category}`}>
-        <label htmlFor="category">Category</label>
-        <input
-          type="text"
-          name="category"
-          placeholder="Category"
-          value={record.category}
-          onChange={handleChange}
-          readOnly="readonly"
-          onClick={(e) => setIsMenuVisible(!isMenuVisible)}
-          onKeyUp={(e) => setIsMenuVisible(!isMenuVisible)}
-        />
-        {isMenuVisible ? (
-          <SelectField handleSelectedCategory={handleSelectedCategory} />
-        ) : null}
-      </div> */}
 
         <DatePicker
           selected={recordDate}
