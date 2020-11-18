@@ -1,0 +1,11 @@
+.header {
+  background: lightgray;
+  padding: 30px;
+}
+
+.header .header__content,
+.header .header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

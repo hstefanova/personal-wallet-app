@@ -3,6 +3,7 @@ import "./App.css";
 import logo from "./logo.svg";
 import RecordForm from "./components/Form/RecordForm";
 import RecordList from "./components/Records/RecordList";
+import Header from "./components/Header";
 
 // Header / Content / Footer
 // Main page - Authentication or RecordLists
@@ -17,9 +18,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" width="20" alt="logo" />
-      </header>
+      <Header />
 
       <RecordForm addRecord={addRecord} />
 
