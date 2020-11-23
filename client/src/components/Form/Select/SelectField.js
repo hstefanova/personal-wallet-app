@@ -1,16 +1,23 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, memo } from "react";
 import classes from "./SelectField.module.css";
 import SelectFieldOptions from "./SelectFieldOptions";
+
+const arePropsEqual = (prevProps, nextProps) =>
+  prevProps.value === nextProps.value &&
+  Object.is(prevProps.options, nextProps.options);
 
 const SelectField = ({ id, label, onChange, options = [], ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = (e) => {
-    onChange(e.target.childNodes[0].nodeValue);
+  const handleClick = (e, id) => {
+    e.stopPropagation();
+    onChange(id);
     setIsOpen(!isOpen);
 
-    console.log("event: ", e);
+    console.log("id: ", id);
   };
+
+  console.log("category field rendering");
 
   return (
     <div className={`${classes.field} ${classes.select}`}>
@@ -30,7 +37,7 @@ const SelectField = ({ id, label, onChange, options = [], ...props }) => {
   );
 };
 
-export default SelectField;
+export default memo(SelectField, arePropsEqual);
 
 // export const flattenArray = (arr) => {
 //   return arr.reduce((acc, curr) => {

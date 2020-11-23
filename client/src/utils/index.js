@@ -2,65 +2,62 @@ export const categories = [
   {
     id: "food",
     type: "Food and drinks",
-    main_category: "food",
     options: [
       {
-        id: "restorant",
-        type: "restorant",
-        main_category: "food",
+        id: "restaurant",
+        type: "restaurant",
+        parent_id: "food",
       },
 
       {
         id: "fast-food",
         type: "Fast Food",
-        main_category: "food",
+        parent_id: "food",
       },
 
       {
         id: "groceries",
         type: "Groceries",
-        main_category: "food",
+        parent_id: "food",
       },
 
       {
         id: "bar",
         type: "Bar",
-        main_category: "food",
+        parent_id: "food",
       },
 
       {
         id: "coffee",
         type: "Coffee",
-        main_category: "food",
+        parent_id: "food",
       },
     ],
   },
   {
     id: "shopping",
     type: "Shopping",
-    main_category: "shopping",
     options: [
       {
         id: "clothes",
         type: "Clothes",
-        main_category: "shopping",
+        parent_id: "shopping",
       },
       {
         id: "footwear",
         type: "Footwear",
-        main_category: "shopping",
+        parent_id: "shopping",
       },
       {
         id: "drugstore",
         type: "drugstore",
-        main_category: "shopping",
+        parent_id: "shopping",
       },
     ],
   },
   {
     id: "housing",
     type: "housing",
-    main_category: "housing",
   },
 
   // {

@@ -34,6 +34,8 @@ const RecordForm = ({ addRecord }) => {
     setRecordDate(new Date());
   };
 
+  console.log("form rendering");
+
   return (
     <form className={classes.recordForm} onSubmit={handleSubmit}>
       <div className={classes.recordFormInner}>
