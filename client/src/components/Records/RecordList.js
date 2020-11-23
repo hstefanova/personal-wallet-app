@@ -1,54 +1,36 @@
 import React, { useEffect } from "react";
 import Record from "./Record";
-import { records } from "../../utils";
+import { records, groupBy } from "../../utils";
 import moment from "moment";
 
-const groupBy = (arr, key) => {
-  return arr.reduce((rv, x) => {
-    (rv[x[key]] = rv[x[key]] || []).push(x);
-    return rv;
-  }, {});
-};
-
 const RecordListAll = ({ records }) => {
-  const sortRecordsByDate = records.sort((a, b) => a.date - b.date);
-  const groupRecords = groupBy(sortRecordsByDate, "date");
-
-  console.log("groupRecords: ", groupRecords);
-  // return array of object keys
-  console.log(
-    "Object keys: ",
-    Object.keys(groupRecords).sort((a, b) => new Date(b) - new Date(a))
-  );
-
-  // return values
-  console.log("values for 23 Nov: ", groupRecords["23 November"]);
+  const recordsByDate = groupBy(records, "created_at");
 
   return (
     <div>
-      <ul>
-        {Object.keys(groupRecords)
-          .sort((a, b) => new Date(b) - new Date(a))
-          .map((date) => (
-            <div>
-              <h1>
-                {date}
-                <span>
-                  {groupRecords[date].reduce(
-                    (accumulator, currentValue) =>
-                      accumulator + currentValue.amount,
-                    0
-                  )}
-                </span>
-              </h1>
-              {groupRecords[date].map((record) => (
+      {Object.keys(recordsByDate)
+        .sort((a, b) => new Date(b) - new Date(a))
+        .map((dateKey) => (
+          <div>
+            <h1>
+              {moment(dateKey).format("DD MMMM")}
+              <span>
+                {recordsByDate[dateKey].reduce(
+                  (accumulator, currentRecord) =>
+                    accumulator + currentRecord.amount,
+                  0
+                )}
+              </span>
+            </h1>
+            <ul>
+              {recordsByDate[dateKey].map((record) => (
                 <li>
                   <Record key={record.id} record={record} />
                 </li>
               ))}
-            </div>
-          ))}
-      </ul>
+            </ul>
+          </div>
+        ))}
     </div>
   );
 };

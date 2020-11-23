@@ -59,42 +59,11 @@ export const categories = [
     id: "housing",
     type: "housing",
   },
-
-  // {
-  //   id: "shopping",
-  //   type: "Shopping",
-  //   options: [
-  //     "Clothing and footwear",
-  //     "Drugstore, pharmacy",
-  //     "Health and beauty",
-  //     "House, garden",
-  //     "Gifts, pleasures",
-  //   ],
-  // },
-  // {
-  //   id: "housing",
-  //   type: "Housing",
-  //   options: [
-  //     "Energy, utilities",
-  //     "Property Insurance",
-  //     "Rent",
-  //     "Services",
-  //     "Maintenance, Repair",
-  //   ],
-  // },
-  // {
-  //   id: "transport",
-  //   type: "Transport",
-  //   options: ["Business travel", "Long distances", "Public transport", "Taxi"],
-  // },
 ];
 
-export const records = [
-  {
-    id: 1,
-    note: "Billa",
-    amount: 50.0,
-    category: "Food",
-    date: "14 nov 2020",
-  },
-];
+export const groupBy = (arr, key) => {
+  return arr.reduce((rv, x) => {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};

@@ -20,7 +20,7 @@ const RecordForm = ({ addRecord }) => {
     note: "",
     amount: "",
     category: "",
-    date: "",
+    created_at: "",
   });
 
   const handleChange = (name, value) => {
@@ -33,10 +33,9 @@ const RecordForm = ({ addRecord }) => {
     addRecord({
       ...record,
       id: uuid(),
-      date: moment(recordDate).format("DD MMMM"),
       created_at: recordDate,
     });
-    setRecord({ id: "", amount: "", note: "", category: "", date: "" });
+    setRecord({ id: "", amount: "", note: "", category: "", created_at: "" });
     setRecordDate(new Date());
   };
 

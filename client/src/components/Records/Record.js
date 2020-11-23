@@ -15,7 +15,7 @@ const Record = ({ record }) => {
 
       <div className={classes.recordAmount}>{record.amount}</div>
 
-      <div> {moment(record.date).format("DD MMMM")}</div>
+      <div> {moment(record.created_at).format("DD MMMM")}</div>
     </div>
   );
 };
