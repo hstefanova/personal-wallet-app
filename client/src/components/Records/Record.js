@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./Record.module.css";
+import moment from "moment";
 
 const Record = ({ record }) => {
-  console.log("record date: ", record.date);
   return (
     <div className={classes.record}>
       <div className={classes.checkbox}>
@@ -15,7 +15,7 @@ const Record = ({ record }) => {
 
       <div className={classes.recordAmount}>{record.amount}</div>
 
-      <div> {record.date.toString()}</div>
+      <div> {moment(record.date).format("DD MMMM")}</div>
     </div>
   );
 };

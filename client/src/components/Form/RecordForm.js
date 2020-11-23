@@ -7,6 +7,7 @@ import SelectField from "./Select/SelectField";
 import InputField from "../Form/InputField";
 import { categories } from "../../utils";
 import { flattenArray } from "./Select/SelectField";
+import moment from "moment";
 
 const OPTIONS = categories;
 
@@ -29,7 +30,12 @@ const RecordForm = ({ addRecord }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    addRecord({ ...record, id: uuid(), date: recordDate });
+    addRecord({
+      ...record,
+      id: uuid(),
+      date: moment(recordDate).format("DD MMMM"),
+      created_at: recordDate,
+    });
     setRecord({ id: "", amount: "", note: "", category: "", date: "" });
     setRecordDate(new Date());
   };
