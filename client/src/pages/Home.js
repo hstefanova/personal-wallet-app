@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RecordForm from "../components/Form/RecordForm";
-import RecordListAll from "../components/Records/RecordListAll";
+import RecordList from "../components/Records/RecordList";
 
 const Home = () => {
   const [records, setRecords] = useState([]);
@@ -17,7 +17,7 @@ const Home = () => {
 
       <h5>Records List:</h5>
 
-      <RecordListAll records={records} />
+      <RecordList records={records} />
     </div>
   );
 };

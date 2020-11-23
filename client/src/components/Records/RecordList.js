@@ -16,7 +16,10 @@ const RecordListAll = ({ records }) => {
 
   console.log("groupRecords: ", groupRecords);
   // return array of object keys
-  console.log("Object keys: ", Object.keys(groupRecords).sort());
+  console.log(
+    "Object keys: ",
+    Object.keys(groupRecords).sort((a, b) => new Date(b) - new Date(a))
+  );
 
   // return values
   console.log("values for 23 Nov: ", groupRecords["23 November"]);
@@ -25,10 +28,19 @@ const RecordListAll = ({ records }) => {
     <div>
       <ul>
         {Object.keys(groupRecords)
-          .sort()
+          .sort((a, b) => new Date(b) - new Date(a))
           .map((date) => (
             <div>
-              <h1>{date}</h1>
+              <h1>
+                {date}
+                <span>
+                  {groupRecords[date].reduce(
+                    (accumulator, currentValue) =>
+                      accumulator + currentValue.amount,
+                    0
+                  )}
+                </span>
+              </h1>
               {groupRecords[date].map((record) => (
                 <li>
                   <Record key={record.id} record={record} />
