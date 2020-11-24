@@ -12,7 +12,6 @@ import moment from "moment";
 const OPTIONS = categories;
 
 const RecordForm = ({ addRecord }) => {
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [recordDate, setRecordDate] = useState(new Date());
 
   const [record, setRecord] = useState({

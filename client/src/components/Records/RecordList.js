@@ -4,7 +4,7 @@ import { records, groupBy } from "../../utils";
 import moment from "moment";
 import classes from "./Record.module.css";
 
-const RecordListAll = ({ records }) => {
+const RecordList = ({ records }) => {
   const recordsByDate = groupBy(records, "date");
 
   return (
@@ -36,4 +36,4 @@ const RecordListAll = ({ records }) => {
   );
 };
 
-export default RecordListAll;
+export default RecordList;

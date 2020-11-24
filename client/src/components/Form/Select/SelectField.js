@@ -2,9 +2,9 @@ import React, { useState, useRef, memo } from "react";
 import classes from "./SelectField.module.css";
 import SelectFieldOptions from "./SelectFieldOptions";
 
-const arePropsEqual = (prevProps, nextProps) =>
-  prevProps.value === nextProps.value &&
-  Object.is(prevProps.options, nextProps.options);
+// const arePropsEqual = (prevProps, nextProps) =>
+//   prevProps.value === nextProps.value &&
+//   Object.is(prevProps.options, nextProps.options);
 
 const SelectField = ({ id, label, onChange, options = [], ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +37,8 @@ const SelectField = ({ id, label, onChange, options = [], ...props }) => {
   );
 };
 
-export default memo(SelectField, arePropsEqual);
+// export default memo(SelectField, arePropsEqual);
+export default SelectField;
 
 // export const flattenArray = (arr) => {
 //   return arr.reduce((acc, curr) => {
