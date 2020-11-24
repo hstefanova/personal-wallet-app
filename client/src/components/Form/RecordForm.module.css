@@ -46,3 +46,7 @@
   display: flex;
   align-items: flex-start;
 }
+
+.inputError {
+  background: red;
+}

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import RecordForm from "../components/Form/RecordForm";
+// import RecordFormValidation from "../components/Form/RecordFormValidation";
+
 import RecordList from "../components/Records/RecordList";
 
 const Home = () => {
@@ -14,6 +16,8 @@ const Home = () => {
       <h1>HOME PAGE</h1>
 
       <RecordForm addRecord={addRecord} />
+
+      {/* <RecordFormValidation addRecord={addRecord} /> */}
 
       <h5>Records List:</h5>
 
