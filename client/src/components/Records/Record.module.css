@@ -5,3 +5,7 @@
   border-radius: 3px;
   border: 1px solid #333;
 }
+
+.row + .row {
+  margin-top: 20px;
+}

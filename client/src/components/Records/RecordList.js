@@ -2,18 +2,19 @@ import React, { useEffect } from "react";
 import Record from "./Record";
 import { records, groupBy } from "../../utils";
 import moment from "moment";
+import classes from "./Record.module.css";
 
 const RecordListAll = ({ records }) => {
-  const recordsByDate = groupBy(records, "created_at");
+  const recordsByDate = groupBy(records, "date");
 
   return (
     <div>
       {Object.keys(recordsByDate)
         .sort((a, b) => new Date(b) - new Date(a))
         .map((dateKey) => (
-          <div>
+          <div className={classes.row}>
             <h1>
-              {moment(dateKey).format("DD MMMM")}
+              {dateKey}
               <span>
                 {recordsByDate[dateKey].reduce(
                   (accumulator, currentRecord) =>

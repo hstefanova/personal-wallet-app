@@ -33,9 +33,10 @@ const RecordForm = ({ addRecord }) => {
     addRecord({
       ...record,
       id: uuid(),
+      date: moment(recordDate).format("DD MMMM"),
       created_at: recordDate,
     });
-    setRecord({ id: "", amount: "", note: "", category: "", created_at: "" });
+    setRecord({ id: "", amount: "", note: "", category: "", date: "" });
     setRecordDate(new Date());
   };
 
