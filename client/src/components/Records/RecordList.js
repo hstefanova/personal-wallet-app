@@ -16,11 +16,13 @@ const RecordList = ({ records }) => {
             <h1>
               {dateKey}
               <span>
-                {recordsByDate[dateKey].reduce(
-                  (accumulator, currentRecord) =>
-                    accumulator + currentRecord.amount,
-                  0
-                )}
+                {recordsByDate[dateKey]
+                  .reduce(
+                    (accumulator, currentRecord) =>
+                      accumulator + parseFloat(currentRecord.amount),
+                    0
+                  )
+                  .toFixed(2)}
               </span>
             </h1>
             <ul>

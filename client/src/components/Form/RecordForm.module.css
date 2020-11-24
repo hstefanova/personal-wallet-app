@@ -48,5 +48,9 @@
 }
 
 .inputError {
-  background: red;
+  border-color: red;
+}
+
+.error {
+  color: red;
 }

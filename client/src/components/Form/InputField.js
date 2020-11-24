@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import PropTypes from "prop-types";
 import classes from "./RecordForm.module.css";
 
-const InputField = ({ id, onChange, label, ...props }) => {
+const InputField = ({ id, onChange, label, error, ...props }) => {
   return (
     <div className={classes.field}>
       {label && <label htmlFor={id}>{label}</label>}
@@ -10,7 +10,10 @@ const InputField = ({ id, onChange, label, ...props }) => {
         id={id}
         onChange={(event) => onChange(event.target.value)}
         {...props}
+        className={error ? classes.inputError : null}
       />
+
+      {error ? <div className={classes.error}>{error}</div> : null}
     </div>
   );
 };

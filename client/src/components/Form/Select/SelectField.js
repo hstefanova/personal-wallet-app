@@ -6,7 +6,14 @@ import SelectFieldOptions from "./SelectFieldOptions";
 //   prevProps.value === nextProps.value &&
 //   Object.is(prevProps.options, nextProps.options);
 
-const SelectField = ({ id, label, onChange, options = [], ...props }) => {
+const SelectField = ({
+  id,
+  label,
+  onChange,
+  options = [],
+  error,
+  ...props
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (e, id) => {
@@ -29,10 +36,13 @@ const SelectField = ({ id, label, onChange, options = [], ...props }) => {
         readOnly
         onClick={(e) => setIsOpen(!isOpen)}
         onKeyUp={(e) => setIsOpen(!isOpen)}
+        className={error ? classes.inputError : null}
       />
       {isOpen ? (
         <SelectFieldOptions handleClick={handleClick} options={options} />
       ) : null}
+
+      {error ? <div className={classes.error}> {error}</div> : null}
     </div>
   );
 };

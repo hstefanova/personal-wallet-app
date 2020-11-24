@@ -36,3 +36,11 @@
   width: 100%;
   display: none;
 }
+
+.inputError {
+  border-color: red;
+}
+
+.error {
+  color: red;
+}
