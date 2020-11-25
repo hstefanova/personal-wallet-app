@@ -12,33 +12,6 @@ import moment from "moment";
 const OPTIONS = categories;
 
 const RecordForm = ({ addRecord }) => {
-  // const [recordDate, setRecordDate] = useState(new Date());
-
-  // const [record, setRecord] = useState({
-  //   id: "",
-  //   note: "",
-  //   amount: "",
-  //   category: "",
-  //   created_at: "",
-  // });
-
-  // const handleChange = (name, value) => {
-  //   setRecord({ ...record, [name]: value });
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   addRecord({
-  //     ...record,
-  //     id: uuid(),
-  //     date: moment(recordDate).format("DD MMMM"),
-  //     created_at: recordDate,
-  //   });
-  //   setRecord({ id: "", amount: "", note: "", category: "", date: "" });
-  //   setRecordDate(new Date());
-  // };
-
   const initialValues = {
     id: "",
     note: "",

@@ -1,0 +1,29 @@
+.modal {
+  display: inline-block;
+  padding: 40px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  background: white;
+  font-size: 40px;
+  display: none;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  z-index: 10;
+}
+
+.show {
+  display: block;
+}
+
+.overlay {
+  z-index: 9;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
