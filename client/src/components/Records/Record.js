@@ -4,16 +4,16 @@ import moment from "moment";
 import Modal from "../UI/Modal";
 import RecordForm from "../Form/RecordForm";
 
-const Record = ({ record }) => {
+const Record = ({ record, removeRecord }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        <RecordForm />
+        <RecordForm recordFields={record} />
       </Modal>
 
-      <div className={classes.record} onClick={() => setIsOpen(true)}>
+      <div className={classes.record}>
         <div className={classes.checkbox}>
           <input type="checkbox" />
         </div>
@@ -25,6 +25,8 @@ const Record = ({ record }) => {
         <div className={classes.recordAmount}>{record.amount}</div>
 
         <div> {record.date}</div>
+
+        <button onClick={() => removeRecord(record.id)}>X</button>
       </div>
     </>
   );

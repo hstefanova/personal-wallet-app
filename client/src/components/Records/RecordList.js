@@ -4,7 +4,7 @@ import { records, groupBy } from "../../utils";
 import moment from "moment";
 import classes from "./Record.module.css";
 
-const RecordList = ({ records }) => {
+const RecordList = ({ records, removeRecord }) => {
   const recordsByDate = groupBy(records, "date");
 
   return (
@@ -28,7 +28,11 @@ const RecordList = ({ records }) => {
             <ul>
               {recordsByDate[dateKey].map((record) => (
                 <li>
-                  <Record key={record.id} record={record} />
+                  <Record
+                    key={record.id}
+                    record={record}
+                    removeRecord={removeRecord}
+                  />
                 </li>
               ))}
             </ul>

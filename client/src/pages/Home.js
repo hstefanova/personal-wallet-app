@@ -11,6 +11,11 @@ const Home = () => {
     setRecords([...records, record]);
   };
 
+  const removeRecord = (recordId) => {
+    const result = records.filter((record) => record.id !== recordId);
+    setRecords(result);
+  };
+
   return (
     <div>
       <h1>HOME PAGE</h1>
@@ -21,7 +26,7 @@ const Home = () => {
 
       <h5>Records List:</h5>
 
-      <RecordList records={records} />
+      <RecordList records={records} removeRecord={removeRecord} />
     </div>
   );
 };

@@ -11,15 +11,26 @@ import moment from "moment";
 
 const OPTIONS = categories;
 
-const RecordForm = ({ addRecord }) => {
-  const initialValues = {
+const RecordForm = ({ addRecord, recordFields }) => {
+  let initialValues = {
     id: "",
     note: "",
     amount: "",
     category: "",
     date: "",
-    created_at: new Date(),
+    created_at: "",
   };
+
+  if (recordFields) {
+    initialValues = {
+      id: recordFields.id,
+      note: recordFields.note,
+      amount: recordFields.amount,
+      category: recordFields.category,
+      date: recordFields.date,
+      created_at: recordFields.created_at,
+    };
+  }
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
