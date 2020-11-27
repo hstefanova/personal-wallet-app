@@ -11,8 +11,10 @@ const Home = () => {
     setRecords([...records, record]);
   };
 
-  const removeRecord = (recordId) => {
-    const result = records.filter((record) => record.id !== recordId);
+  // https://www.robinwieruch.de/react-remove-item-from-list
+  const removeRecord = (e, id) => {
+    e.stopPropagation();
+    const result = records.filter((record) => record.id !== id);
     setRecords(result);
   };
 
@@ -21,8 +23,6 @@ const Home = () => {
       <h1>HOME PAGE</h1>
 
       <RecordForm addRecord={addRecord} />
-
-      {/* <RecordFormValidation addRecord={addRecord} /> */}
 
       <h5>Records List:</h5>
 

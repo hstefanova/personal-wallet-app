@@ -13,7 +13,7 @@ const Record = ({ record, removeRecord }) => {
         <RecordForm recordFields={record} />
       </Modal>
 
-      <div className={classes.record}>
+      <div className={classes.record} onClick={() => setIsOpen(true)}>
         <div className={classes.checkbox}>
           <input type="checkbox" />
         </div>
@@ -26,7 +26,7 @@ const Record = ({ record, removeRecord }) => {
 
         <div> {record.date}</div>
 
-        <button onClick={() => removeRecord(record.id)}>X</button>
+        <button onClick={(e) => removeRecord(e, record.id)}>X</button>
       </div>
     </>
   );
