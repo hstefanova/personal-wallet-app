@@ -14,7 +14,7 @@ const RecordList = ({ records, removeRecord }) => {
         .map((dateKey) => (
           <div className={classes.row}>
             <h1>
-              {dateKey}
+              {moment(dateKey).format("DD MMMM")}
               <span>
                 {recordsByDate[dateKey]
                   .reduce(
@@ -27,12 +27,8 @@ const RecordList = ({ records, removeRecord }) => {
             </h1>
             <ul>
               {recordsByDate[dateKey].map((record) => (
-                <li>
-                  <Record
-                    key={record.id}
-                    record={record}
-                    removeRecord={removeRecord}
-                  />
+                <li key={record.id}>
+                  <Record record={record} />
                 </li>
               ))}
             </ul>

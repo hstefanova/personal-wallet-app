@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classes from "./RecordForm.module.css";
 
 const InputField = ({ id, onChange, label, error, ...props }) => {
+  console.log("Input field rendering...");
   return (
     <div className={classes.field}>
       {label && <label htmlFor={id}>{label}</label>}

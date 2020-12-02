@@ -5,13 +5,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import classes from "./RecordForm.module.css";
 import SelectField from "./Select/SelectField";
 import InputField from "../Form/InputField";
-import { categories } from "../../utils";
 import { flattenArray } from "./Select/SelectField";
 import moment from "moment";
+import axios from "axios";
 
-const OPTIONS = categories;
-
-const RecordForm = ({ addRecord, recordFields }) => {
+const RecordForm = ({ recordFields }) => {
   let initialValues = {
     id: "",
     note: "",
@@ -63,13 +61,7 @@ const RecordForm = ({ addRecord, recordFields }) => {
   };
 
   const submitForm = () => {
-    addRecord({
-      ...record,
-      id: uuid(),
-      date: moment(record.created_at).format("DD MMMM"),
-    });
-    setRecord(initialValues);
-    setIsSubmitting(false);
+    axios.post("http://localhost:1337/records", record);
   };
 
   useEffect(() => {
@@ -100,7 +92,6 @@ const RecordForm = ({ addRecord, recordFields }) => {
         />
 
         <SelectField
-          options={OPTIONS}
           value={record.category}
           placeholder="Select category"
           onChange={(value) => handleChange("category", value)}

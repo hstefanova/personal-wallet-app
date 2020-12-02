@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import classes from "./SelectField.module.css";
 
-const SelectFieldItem = ({ option, handleClick }) => {
+const SelectFieldItem = ({ category, handleClick }) => {
   return (
     <li
       className={classes.dropdownItem}
-      onClick={(e) => handleClick(e, option.id)}
+      onClick={(e) => handleClick(e, category.name)}
     >
-      {option.type}
+      {category.name}
 
-      {option.options && (
+      {category.subcategories && (
         <div className={`${classes.dropdownItemOptions}`}>
           <ul>
-            {option.options.map((subOption) => (
+            {category.subcategories.map((subcategory) => (
               <li
-                key={subOption.id}
-                onClick={(e) => handleClick(e, subOption.id)}
+                key={subcategory.id}
+                onClick={(e) => handleClick(e, subcategory.name)}
               >
-                {subOption.type}
+                {subcategory.name}
               </li>
             ))}
           </ul>

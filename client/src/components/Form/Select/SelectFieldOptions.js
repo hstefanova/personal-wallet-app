@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SelectFieldItem from "./SelectFieldItem";
 import classes from "./SelectField.module.css";
+import axios from "axios";
 
-const SelectFieldOptions = ({ options, handleClick }) => {
+const SelectFieldOptions = ({ handleClick }) => {
+  const [categories, setCategories] = useState([]);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsError(false);
+
+      try {
+        let response = await axios("http://localhost:1337/categories");
+        setCategories(response.data);
+      } catch (err) {
+        setIsError(true);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className={classes.dropdown}>
       <ul>
-        {options.map((option) => (
+        {categories.map((category) => (
           <SelectFieldItem
-            key={option.id}
+            key={category.id}
             handleClick={handleClick}
-            option={option}
+            category={category}
           />
         ))}
       </ul>
