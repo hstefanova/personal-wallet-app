@@ -61,7 +61,14 @@ const RecordForm = ({ recordFields }) => {
   };
 
   const submitForm = () => {
-    axios.post("http://localhost:1337/records", record);
+    axios
+      .post("http://localhost:1337/records", {
+        amount: 100,
+        note: "send from react 6",
+        date: "2020-12-01",
+        subcategory: [2],
+      })
+      .then((response) => console.log("response: ", response));
   };
 
   useEffect(() => {

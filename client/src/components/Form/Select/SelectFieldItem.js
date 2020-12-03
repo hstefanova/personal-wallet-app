@@ -5,7 +5,7 @@ const SelectFieldItem = ({ category, handleClick }) => {
   return (
     <li
       className={classes.dropdownItem}
-      onClick={(e) => handleClick(e, category.name)}
+      onClick={(e) => handleClick(e, category.id)}
     >
       {category.name}
 
@@ -15,7 +15,7 @@ const SelectFieldItem = ({ category, handleClick }) => {
             {category.subcategories.map((subcategory) => (
               <li
                 key={subcategory.id}
-                onClick={(e) => handleClick(e, subcategory.name)}
+                onClick={(e) => handleClick(e, subcategory.id)}
               >
                 {subcategory.name}
               </li>

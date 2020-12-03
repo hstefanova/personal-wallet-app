@@ -17,6 +17,8 @@ const Home = () => {
       try {
         const response = await axios("http://localhost:1337/records");
         setRecords(response.data);
+
+        console.log("response: ", response.data);
       } catch (err) {
         setIsError(true);
       }
@@ -40,20 +42,17 @@ const Home = () => {
     <div>
       <h1>HOME PAGE</h1>
 
-      {/* <RecordForm addRecord={addRecord} /> */}
       <RecordForm />
 
       <h5>Records List:</h5>
 
       <p></p>
 
-      {/* <RecordList records={records} removeRecord={removeRecord} /> */}
       {!isError ? (
         <RecordList records={records} />
       ) : (
         "Error with loading the records ..."
       )}
-      {/* <RecordList records={records} /> */}
     </div>
   );
 };
